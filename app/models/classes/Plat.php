@@ -37,6 +37,12 @@ class Plat extends Entite
 
     //Setters && Getters
     // id
+public function __get($property) {
+    if (property_exists($this, $property)) {
+        return $this->$property;
+    }
+}
+
     public function getId(): int
     {
         return $this->id;

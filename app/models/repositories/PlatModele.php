@@ -46,7 +46,7 @@ class PlatModele extends SQL{
         return $stmt->fetchAll(\PDO::FETCH_CLASS, Plat::class);
     }
     public function getPlats(){
-        $query = "SELECT * FROM plats WHERE deleted_at is not null";
+        $query = "SELECT * FROM plats WHERE deleted_at is null";
         $stmt = SQL::getPdo()->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_CLASS, Plat::class);

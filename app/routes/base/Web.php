@@ -32,6 +32,7 @@ class Web
 
 
         BaseRoute::Add('/public/client/plat', [$platClientController, 'accueil']);
+        BaseRoute::Add('/public/client/plat/{type}', [$platClientController, 'accueil']);
         // /php/tastyfood_mvc/public/client/plat
         BaseRoute::Add('/about', function () {
             return Template::render('views/global/about.php');

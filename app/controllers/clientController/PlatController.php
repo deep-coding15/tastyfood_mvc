@@ -40,16 +40,19 @@ class PlatController extends WebController
         'resistance'     => 'Plat de resistance',
         'boisson'        => 'Boissons',
     ];
-    
+
     $type = $types[$page] ?? null;
     $plats = $type 
         ? $this->platModele->getPlatsByTypeName($type)
         : $this->platModele->getPlats();
+        //var_dump($plats);
     return Template::render(
         "/views/client/plat/liste_plat.php",
         [
+            "type" => $type,
             "plats" => $plats
         ]
     );
   }
+  
 }
