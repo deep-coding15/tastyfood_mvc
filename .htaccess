@@ -1,0 +1,10 @@
+# .htaccess à la racine du projet
+Options -Indexes
+RewriteEngine On
+
+# Si le fichier ou dossier n'existe pas
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# On redirige vers index.php avec le paramètre "url"
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
