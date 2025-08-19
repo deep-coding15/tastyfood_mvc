@@ -25,8 +25,10 @@ class Web
         //$platController = new \App\Controllers\Controller\PlatController(); 
         // Appel la méthode « home » dans le contrôleur $main.
         BaseRoute::Add('/', [$main, 'home']);
+        BaseRoute::Add('/home', [$main, 'home']);
         BaseRoute::Add('/public/utilisateur', [$utilisateurController, 'liste']);
     
+
         BaseRoute::Add('/public/plat', [$platController, 'liste']);
         BaseRoute::Add('/public/plat/create', [$platController, 'ajouter']);
         BaseRoute::Add('/public/plat/show/{platId}', [$platController, 'show']);
