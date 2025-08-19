@@ -14,16 +14,7 @@ class UtilisateurModele extends SQL{
      * @param int $page
      * @return Utilisateur[]
      */
-    public function liste(int $limit = PHP_INT_MAX, int $page = 0)
-    {
-        $query = "SELECT * FROM utilisateur LIMIT :limit,:offset;";
-
-        $stmt = SQL::getPdo()->prepare($query);
-        $stmt->execute([":limit" => $limit * $page, ":offset" => $limit]);
-        //var_dump($stmt->fetchAll());
-        //return $stmt->fetchObject(Client::class);
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, Utilisateur::class);
-    }
+    /*  */
 
     /**
      * Retourne une liste de client correspondant au critère de recherche

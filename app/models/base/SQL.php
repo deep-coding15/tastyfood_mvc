@@ -15,9 +15,9 @@ class SQL implements IDatabase
     private static ?\PDO $pdo = null;
 
     /**
-     * @return PDO
+     * @return PDO|null
      */
-    public static function getPdo(): PDO
+    public static function getPdo(): PDO|null
     {
         if (SQL::$pdo == null) {
             SQL::$pdo = Database::connect();
@@ -41,7 +41,7 @@ class SQL implements IDatabase
      */
     public function getAll(): array|null
     {
-        $stmt = SQL::getPdo()->prepare("SELECT * FROM {$this->tableName};");
+        $stmt = SQL::getPdo()->prepare("SELECT * FROM {$this->tableName} Where deleted_at is null;");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }

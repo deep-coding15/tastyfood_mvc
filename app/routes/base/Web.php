@@ -3,8 +3,10 @@
 namespace App\Routes\Base;
 require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 
+use App\Controllers\ClientController\MenuController as MenuClientController;
 use App\Controllers\Controller\PlatController;
 use App\Controllers\ClientController\PlatController as PlatClientController;
+use App\Controllers\Controller\MenuController;
 use App\Routes\Base\Route as BaseRoute;
 use App\Controllers\Controller\UtilisateurController;
 use App\controllers\MainController;
@@ -18,6 +20,8 @@ class Web
         $utilisateurController = new UtilisateurController();
         $platController = new PlatController();
         $platClientController = new PlatClientController();
+
+        $menuClientControlleur = new MenuClientController();
         //$platController = new \App\Controllers\Controller\PlatController(); 
         // Appel la méthode « home » dans le contrôleur $main.
         BaseRoute::Add('/', [$main, 'home']);
@@ -33,6 +37,8 @@ class Web
 
         BaseRoute::Add('/public/client/plat', [$platClientController, 'accueil']);
         BaseRoute::Add('/public/client/plat/{type}', [$platClientController, 'accueil']);
+
+        BaseRoute::Add('/public/client/menu', [$menuClientControlleur, 'liste']);
         // /php/tastyfood_mvc/public/client/plat
         BaseRoute::Add('/about', function () {
             return Template::render('views/global/about.php');

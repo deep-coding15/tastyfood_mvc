@@ -102,7 +102,7 @@ $page = $_GET['page'] ?? 'default'; // valeur par défaut
         <!-- <div id="carts" class="carts grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <?php /* foreach ($plats as $plat): */ ?>
                 <div class="max-w-sm max-h-full pb-2 bg-white rounded-2xl shadow-lg hover:scale-105 transition max-w-screen-sm mx-auto">
-                    <img src="<?phps htmlspecialchars($plat->getImgPlat()) ?>"
+                    <img src="<?php htmlspecialchars($plat->getImgPlat()) ?>"
                         alt="<?= 'image du plat ' . htmlspecialchars($plat->getNomPlat()) ?>"
                         class="w-full h-48 object-cover rounded-t-2xl">
                     <div class="p-6 space-y-4 min-h-fit">
@@ -119,7 +119,7 @@ $page = $_GET['page'] ?? 'default'; // valeur par défaut
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php /*  endforeach; */ ?>
         </div>
     </section>
 

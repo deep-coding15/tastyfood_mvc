@@ -47,7 +47,7 @@ $_sessionHelpers = new SessionHelpers(); // $_instance->getSession();
       <nav class="space-x-6 hidden md:flex w-full">
         <a href="/php/tastyfood_mvc/public/client/plat" class="text-gray-600 hover:text-blue-600 flex-1">Accueil</a>
         <a href="/php/tastyfood_mvc/public/client/plat" class="text-gray-600 hover:text-blue-600 flex-1">Plats</a>  
-        <a href="<?= Constante::base_url_vues_client() ?>/menu.php" class="text-gray-600 hover:text-blue-600 flex-1">Menu</a>
+        <a href="/php/tastyfood_mvc/public/client/menu" class="text-gray-600 hover:text-blue-600 flex-1">Menu</a>
         <a href="<?= Constante::base_url_vues_client() ?>/reservation.php" class="text-gray-600 hover:text-blue-600 flex-1">Reservation</a>
         <a href="<?= Constante::base_url_vues_client() ?>/livraison.php" class="text-gray-600 hover:text-blue-600 flex-1">Livraison</a>
         <a href="<?= Constante::base_url_vues_client() ?>/a_propos.php" class="text-gray-600 hover:text-blue-600 flex-1">A propos</a>
@@ -66,8 +66,8 @@ $_sessionHelpers = new SessionHelpers(); // $_instance->getSession();
 
     <!-- uniquement visible sur mobile -->
     <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2">
-      <a href="<?= Constante::base_url_vues_client() ?>/accueil.php" class="text-gray-600 hover:text-blue-600 flex-1">Accueil</a>
-      <a href="<?= Constante::base_url_vues_client() ?>/menu.php" class="text-gray-600 hover:text-blue-600 flex-1">Menu</a>
+      <a href="/php/tastyfood_mvc/public/client/plat" class="text-gray-600 hover:text-blue-600 flex-1">Accueil</a>
+      <a href="/php/tastyfood_mvc/public/client/menu" class="text-gray-600 hover:text-blue-600 flex-1">Menu</a>
       <a href="<?= Constante::base_url_vues_client() ?>/reservation.php" class="text-gray-600 hover:text-blue-600 flex-1">Reservation</a>
       <a href="<?= Constante::base_url_vues_client() ?>/livraison.php" class="text-gray-600 hover:text-blue-600 flex-1">Livraison</a>
       <a href="<?= Constante::base_url_vues_client() ?>/a_propos.php" class="text-gray-600 hover:text-blue-600 flex-1">A propos</a>
