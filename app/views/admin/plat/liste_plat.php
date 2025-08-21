@@ -1,4 +1,4 @@
-<div class="p-6 bg-gray-100 min-h-screen mt-16 mb-24 overflow-x-auto">
+<div class="w-full p-6 bg-gray-100 min-h-screen mt-16 mb-24 overflow-x-auto">
   <!-- Titre -->
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-3xl font-bold text-gray-800">
@@ -37,11 +37,11 @@
               <td class="px-4 py-3"><?= htmlspecialchars($plat->getType()); ?></td>
               <td class="px-4 py-3"><?= htmlspecialchars($plat->getCreatedAt()->format('Y-m-d H:i:s')); ?></td>
               <td class="px-4 py-3 flex gap-2 justify-center">
-                <a href="/php/tastyfood_mvc/public/plat/show/<?= $plat->getId(); ?>"
+                <a href="/php/tastyfood_mvc/public/admin/plat/show/<?= $plat->getId(); ?>"
                   class="px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600">Voir</a>
-                <a href="/php/tastyfood_mvc/public/plat/edit/<?= $plat->getId(); ?>"
+                <a href="/php/tastyfood_mvc/public/admin/plat/edit/<?= $plat->getId(); ?>"
                   class="px-3 py-1 text-xs bg-yellow-500 text-white rounded hover:bg-yellow-600">Modifier</a>
-                <a href="/php/tastyfood_mvc/public/plat/delete/<?= $plat->getId(); ?>"
+                <a href="/php/tastyfood_mvc/public/admin/plat/delete/<?= $plat->getId(); ?>"
                   onclick="return confirm('Voulez-vous vraiment supprimer ce plat ?');"
                   class="px-3 py-1 text-xs bg-red-500 text-white rounded hover:bg-red-600">Supprimer</a>
               </td>

@@ -4,7 +4,7 @@ namespace App\Utils;
 
 class Template
 {
-    static function render($filepath, $variables = array(), $withHeader = true): string
+    static function render($filepath, $variables = array(), $isAdmin = false, $withHeader = true): string
     {
         ob_start();
         // Déclare l'ensemble des variables présent dans la variable $variales pour
@@ -12,10 +12,21 @@ class Template
         // array("nom" => "Brosseau", "prenom" => "Valentin") va générer
         // $nom = "Brosseau" et $prenom = "Valentin"
         extract($variables);
-        if ($withHeader) Template::header();
-        //var_dump( ConstanteServer::base_path_app() . '/' . $filepath);
+        if ($withHeader) {
+            if (!$isAdmin) {
+                Template::header();
+                include ConstanteServer::base_path_app() . '/' . $filepath;
+                Template::footer();
+            }
+            else{
+                Template::header_admin();
+                include ConstanteServer::base_path_app() . '/' . $filepath;
+                Template::footer_admin();
+            }
+        }
+        else
             include ConstanteServer::base_path_app() . '/' . $filepath;
-        if ($withHeader) Template::footer();
+
 
         return ob_get_clean();
     }
@@ -28,5 +39,13 @@ class Template
     static private function footer(): void
     {
         include_once ConstanteServer::base_path_vues_common() . ("/footer.php");
+    }
+    static private function header_admin(): void
+    {
+        include_once ConstanteServer::base_path_vues_common() . ("/admin/header.php");
+    }
+    static private function footer_admin(): void
+    {
+        include_once ConstanteServer::base_path_vues_common() . ("/admin/footer.php");
     }
 }

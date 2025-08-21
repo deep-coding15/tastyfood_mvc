@@ -123,8 +123,8 @@
     <section id="order" class="py-16 bg-red-600 text-white text-center ">
         <h3 class="text-3xl font-bold mb-4">Prêt à vous régaler ?</h3>
         <p class="mb-6">Commandez dès maintenant et profitez d’une expérience culinaire unique chez vous.</p>
-        <a href="/php/tastyfood_mvc/public/client/plat/" class="bg-white text-red-600 px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-200 transition">Je commande un plat</a>
-        <a href="/php/tastyfood_mvc/public/client/menu" class="bg-white text-red-600 px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-200 transition">Je commande un menu</a>
+        <a href="/php/tastyfood_mvc/public/plat/" class="bg-white text-red-600 px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-200 transition">Je commande un plat</a>
+        <a href="/php/tastyfood_mvc/public/menu" class="bg-white text-red-600 px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-200 transition">Je commande un menu</a>
     </section>
 
     <!-- FOOTER -->

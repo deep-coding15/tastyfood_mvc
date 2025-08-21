@@ -26,7 +26,8 @@ class PlatController extends WebController
 
     return Template::render(
       "views/admin/plat/liste_plat.php",
-      array("page" => $page, "plats" => $lesPlats)
+      array("page" => $page, "plats" => $lesPlats),
+      true,
     );
   }
 
@@ -57,7 +58,7 @@ class PlatController extends WebController
           echo 'redirection en cours...';
 ?><script>
             window.setTimeout(function() {
-              window.location.href = "/php/tastyfood_mvc/public/plat";
+              window.location.href = "/php/tastyfood_mvc/public/admin/plat";
             }, 3000); // Redirection après 3 secondes
           </script>
         <?php
@@ -77,6 +78,8 @@ class PlatController extends WebController
       //header("Location: /plats?success=1");
       Template::render(
         "/public/views/admin/plat/liste_plat.php",
+        [],
+        true
       );
       //header("Location: /public/admin/plat");
       exit;
@@ -93,6 +96,7 @@ class PlatController extends WebController
     return Template::render(
       "views/admin/plat/show_plat.php",
       array("plat" => $plat),
+      true
     );
   }
   public function edit(int $platId)
@@ -103,6 +107,7 @@ class PlatController extends WebController
     return Template::render(
       "/views/admin/plat/edit_plat.php",
       array("plat" => $plat),
+      true
     );
   }
 

@@ -29,18 +29,18 @@ class Web
         BaseRoute::Add('/public/utilisateur', [$utilisateurController, 'liste']);
     
 
-        BaseRoute::Add('/public/plat', [$platController, 'liste']);
-        BaseRoute::Add('/public/plat/create', [$platController, 'ajouter']);
-        BaseRoute::Add('/public/plat/show/{platId}', [$platController, 'show']);
-        BaseRoute::Add('/public/plat/edit/{platId}', [$platController, 'edit']);
-        BaseRoute::Add('/public/plat/update/{platId}', [$platController, 'update']);
-        BaseRoute::Add('/public/plat/delete/{platId}', [$platController, 'delete']);
+        BaseRoute::Add('/public/admin/plat', [$platController, 'liste']);
+        BaseRoute::Add('/public/admin/plat/create', [$platController, 'ajouter']);
+        BaseRoute::Add('/public/admin/plat/show/{platId}', [$platController, 'show']);
+        BaseRoute::Add('/public/admin/plat/edit/{platId}', [$platController, 'edit']);
+        BaseRoute::Add('/public/admin/plat/update/{platId}', [$platController, 'update']);
+        BaseRoute::Add('/public/admin/plat/delete/{platId}', [$platController, 'delete']);
 
 
-        BaseRoute::Add('/public/client/plat', [$platClientController, 'accueil']);
-        BaseRoute::Add('/public/client/plat/{type}', [$platClientController, 'accueil']);
+        BaseRoute::Add('/public/plat', [$platClientController, 'accueil']);
+        BaseRoute::Add('/public/plat/{type}', [$platClientController, 'accueil']);
 
-        BaseRoute::Add('/public/client/menu', [$menuClientControlleur, 'liste']);
+        BaseRoute::Add('/public/menu', [$menuClientControlleur, 'liste']);
         // /php/tastyfood_mvc/public/client/plat
         BaseRoute::Add('/about', function () {
             return Template::render('views/global/about.php');

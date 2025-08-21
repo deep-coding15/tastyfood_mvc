@@ -28,7 +28,7 @@ $_sessionHelpers = new SessionHelpers(); // $_instance->getSession();
   ?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="<?= Constante::base_url() . Constante::base_public() . '/style.css' ?>">
+  <link rel="stylesheet" href="<?= Constante::base_url() . Constante::base_public() . '/output.css' ?>">
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
   <title>
@@ -45,9 +45,9 @@ $_sessionHelpers = new SessionHelpers(); // $_instance->getSession();
     <!-- max-w-7xl -->
     <div class="mx-auto px-4 py-4 flex items-center justify-between">
       <nav class="space-x-6 hidden md:flex w-full">
-        <a href="/php/tastyfood_mvc/public/client/plat" class="text-gray-600 hover:text-blue-600 flex-1">Accueil</a>
-        <a href="/php/tastyfood_mvc/public/client/plat" class="text-gray-600 hover:text-blue-600 flex-1">Plats</a>  
-        <a href="/php/tastyfood_mvc/public/client/menu" class="text-gray-600 hover:text-blue-600 flex-1">Menu</a>
+        <a href="/php/tastyfood_mvc/public" class="text-gray-600 hover:text-blue-600 flex-1">Accueil</a>
+        <a href="/php/tastyfood_mvc/public/plat" class="text-gray-600 hover:text-blue-600 flex-1">Plats</a>  
+        <a href="/php/tastyfood_mvc/public/menu" class="text-gray-600 hover:text-blue-600 flex-1">Menu</a>
         <a href="<?= Constante::base_url_vues_client() ?>/reservation.php" class="text-gray-600 hover:text-blue-600 flex-1">Reservation</a>
         <a href="<?= Constante::base_url_vues_client() ?>/livraison.php" class="text-gray-600 hover:text-blue-600 flex-1">Livraison</a>
         <a href="<?= Constante::base_url_vues_client() ?>/a_propos.php" class="text-gray-600 hover:text-blue-600 flex-1">A propos</a>
@@ -66,8 +66,8 @@ $_sessionHelpers = new SessionHelpers(); // $_instance->getSession();
 
     <!-- uniquement visible sur mobile -->
     <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2">
-      <a href="/php/tastyfood_mvc/public/client/plat" class="text-gray-600 hover:text-blue-600 flex-1">Accueil</a>
-      <a href="/php/tastyfood_mvc/public/client/menu" class="text-gray-600 hover:text-blue-600 flex-1">Menu</a>
+      <a href="/php/tastyfood_mvc/public/plat" class="text-gray-600 hover:text-blue-600 flex-1">Accueil</a>
+      <a href="/php/tastyfood_mvc/public/menu" class="text-gray-600 hover:text-blue-600 flex-1">Menu</a>
       <a href="<?= Constante::base_url_vues_client() ?>/reservation.php" class="text-gray-600 hover:text-blue-600 flex-1">Reservation</a>
       <a href="<?= Constante::base_url_vues_client() ?>/livraison.php" class="text-gray-600 hover:text-blue-600 flex-1">Livraison</a>
       <a href="<?= Constante::base_url_vues_client() ?>/a_propos.php" class="text-gray-600 hover:text-blue-600 flex-1">A propos</a>
@@ -80,7 +80,7 @@ $_sessionHelpers = new SessionHelpers(); // $_instance->getSession();
 
 
   <!-- <main class="pb-48 p-8 col-span-2 row-span-1 overflow-auto flex flex-col">
- p/*  $content */ ?>
+  p/*  $content */ ?>
   </main> -->
   <!--  -->
   <main class="col-span-2 row-span-1 overflow-auto flex flex-col justify-center items-center">
