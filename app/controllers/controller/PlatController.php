@@ -16,7 +16,6 @@ class PlatController extends WebController
   private $platModele;
   function __construct()
   {
-    // À mettre dans le constructeur évidemment
     $this->platModele = new PlatModele();
   }
   function liste($page = 0)
@@ -110,19 +109,6 @@ class PlatController extends WebController
     );
   }
 
-  /* public function update($platId){
-        $postData = $_POST;
-        var_dump($_POST);
-        /* $nom = trim($method['nom']) ??= '';
-        $description = trim($method['description']) ??= '';
-        $prix = trim($method['prix']) ??= 0;
-        $type = trim($method['type']) ??= '';
-        $img = trim($method['image']) ??= '';
-        $id = trim($method['id']) ?? 0;
-         *
-        return $this->platModele->updateOne($platId, $postData);
-    }
- */
   public function update($id)
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -180,12 +166,7 @@ class PlatController extends WebController
           array("message" => $message)
         );
       }
-    //}
-    //var_dump($plat);
-    /* return Template::render(
-      "/views/admin/plat/delete_plat.php",
-      array("plat" => $plat),
-    ); */
+    
   }
   private function showForDelete(Plat $plat) {}
 }

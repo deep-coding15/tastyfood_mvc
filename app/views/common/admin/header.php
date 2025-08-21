@@ -73,7 +73,7 @@ require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
         <li><a href="<?= Constante::base_url() . '/src/templates/menu.php' ?>" class="block hover:text-yellow-400">Accueil</a></li>
         <li><a href="/php/tastyfood_mvc/public/admin/" class="block hover:text-yellow-400">Ingrédients</a></li>
         <li><a href="/php/tastyfood_mvc/public/admin/plat" class="block hover:text-yellow-400">Plats</a></li>
-        <li><a href="/php/tastyfood_mvc/public/admin/" class="block hover:text-yellow-400">Menu</a></li>
+        <li><a href="/php/tastyfood_mvc/public/admin/menu" class="block hover:text-yellow-400">Menu</a></li>
         <li><a href="/php/tastyfood_mvc/public/admin/" class="block hover:text-yellow-400">Réservation</a></li>
         <li><a href="/php/tastyfood_mvc/public/admin/" class="block hover:text-yellow-400">Livraison</a></li>
         <li><a href="/php/tastyfood_mvc/public/admin/" class="block hover:text-yellow-400">Personnel</a></li>

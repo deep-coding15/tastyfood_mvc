@@ -6,7 +6,7 @@ require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 use App\Controllers\ClientController\MenuController as MenuClientController;
 use App\Controllers\Controller\PlatController;
 use App\Controllers\ClientController\PlatController as PlatClientController;
-use App\Controllers\Controller\MenuController;
+use App\Controllers\Controller\MenuController as MenuAdminController;
 use App\Routes\Base\Route as BaseRoute;
 use App\Controllers\Controller\UtilisateurController;
 use App\controllers\MainController;
@@ -20,7 +20,8 @@ class Web
         $utilisateurController = new UtilisateurController();
         $platController = new PlatController();
         $platClientController = new PlatClientController();
-
+        
+        $menuAdminController = new MenuAdminController();
         $menuClientControlleur = new MenuClientController();
         //$platController = new \App\Controllers\Controller\PlatController(); 
         // Appel la méthode « home » dans le contrôleur $main.
@@ -36,6 +37,7 @@ class Web
         BaseRoute::Add('/public/admin/plat/update/{platId}', [$platController, 'update']);
         BaseRoute::Add('/public/admin/plat/delete/{platId}', [$platController, 'delete']);
 
+        BaseRoute::Add('/public/admin/menu', [$menuAdminController, 'liste']);
 
         BaseRoute::Add('/public/plat', [$platClientController, 'accueil']);
         BaseRoute::Add('/public/plat/{type}', [$platClientController, 'accueil']);

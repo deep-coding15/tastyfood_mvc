@@ -31,6 +31,7 @@ class MenuController extends WebController
       $plats = $this->menuModele->getPlatsPrixByMenuId($id);
       $lesMenus[$key]["menus"] = $menu;
       $lesMenus[$key]["plats"] = $plats;
+      //$lesMenus[$key]['prix_total'] = 1;
     }
     //$lesMenus
     //$plats = $this->menuModele->getPlatsPrixByMenuId();

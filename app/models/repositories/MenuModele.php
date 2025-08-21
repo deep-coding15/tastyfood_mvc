@@ -11,12 +11,13 @@ class MenuModele extends SQL
     {
         parent::__construct('menus', 'id');
     }
-    public function liste(int $page = 0, int $limit = 10): array
+    public function liste(int $page = 0, int $limit = 10)
     {
         $query = "SELECT * FROM {$this->tableName} 
               WHERE deleted_at IS NULL 
               ORDER BY updated_at DESC 
-              LIMIT :limit OFFSET :offset";
+              LIMIT :limit";
+              // OFFSET :offset";
 
         $stmt = $this->getPdo()->prepare($query);
 
@@ -25,11 +26,17 @@ class MenuModele extends SQL
 
         // Bind en entiers (important !)
         $stmt->bindValue(':limit', $limit, \PDO::PARAM_INT);
-        $stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
+        //$stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
 
         $stmt->execute();
+        //$menus = $stmt->fetchAll(\PDO::FETCH_OBJ);
+        //$plats = array_map('getPlatsPrixByMenuId', $menus);
+        /* foreach($menus as $key => $menu){
 
-        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+        } */
+       //var_dump($menus);
+       return $stmt->fetchAll();
+        
     }
    
     public function getPlatsPrixByMenuId($menu_id): array
