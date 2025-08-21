@@ -17,14 +17,27 @@ class Template
                 Template::header();
                 include ConstanteServer::base_path_app() . '/' . $filepath;
                 Template::footer();
-            }
-            else{
+            } else {
                 Template::header_admin();
                 include ConstanteServer::base_path_app() . '/' . $filepath;
                 Template::footer_admin();
             }
-        }
-        else
+        } else
+            include ConstanteServer::base_path_app() . '/' . $filepath;
+
+
+        return ob_get_clean();
+    }
+
+    public static function render_admin($filepath, $variables = array(), $withHeader = true)
+    {
+        ob_start();
+        extract($variables);
+        if ($withHeader) {
+            Template::header_admin();
+            include ConstanteServer::base_path_app() . '/' . $filepath;
+            Template::footer_admin();
+        } else
             include ConstanteServer::base_path_app() . '/' . $filepath;
 
 

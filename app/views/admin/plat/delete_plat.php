@@ -3,7 +3,7 @@
 
     <h2 class="text-2xl font-bold text-gray-800 mb-6">✏️ Supprimer un plat</h2>
     <!-- action="/php/tastyfood_mvc/public/plat/update/<?php /* echo $plat->id; */ ?>" -->
-    <form action="/php/tastyfood_mvc/public/plat/dlete/<?= htmlspecialchars($plat->id) ?>" method="post" enctype="multipart/form-data" class="space-y-6">
+    <form action="/php/tastyfood_mvc/public/plat/delete/<?= htmlspecialchars($plat->id) ?>" method="post" enctype="multipart/form-data" class="space-y-6">
         <!-- id -->
         <input type="hidden" name="id" id="id" value="<?php echo $plat->id; ?>">
         <!-- Nom -->

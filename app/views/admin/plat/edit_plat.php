@@ -1,9 +1,7 @@
-<?php var_dump($_GET)?>
 <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-md mt-20 mb-20">
 
     <h2 class="text-2xl font-bold text-gray-800 mb-6">✏️ Éditer un plat</h2>
-<!-- action="/php/tastyfood_mvc/public/plat/update/<?php /* echo $plat->id; */ ?>" -->
-    <form action="/php/tastyfood_mvc/public/plat/update/<?= htmlspecialchars($plat->id)?>" method="post" enctype="multipart/form-data" class="space-y-6">
+    <form action="/php/tastyfood_mvc/public/admin/plat/update/<?= htmlspecialchars($plat->id)?>" method="post" enctype="multipart/form-data" class="space-y-6">
         <!-- id -->
         <input type="hidden" name="id" id="id" value="<?php echo $plat->id; ?>">
         <!-- Nom -->

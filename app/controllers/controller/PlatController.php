@@ -93,7 +93,7 @@ class PlatController extends WebController
   public function show(int $platId)
   {
     $plat = $this->platModele->getOne($platId);
-    return Template::render(
+    return Template::render_admin(
       "views/admin/plat/show_plat.php",
       array("plat" => $plat),
       true
@@ -104,10 +104,9 @@ class PlatController extends WebController
     //$plat = $this->show($platId);
     $plat = $this->platModele->getOne($platId);
     //var_dump($plat);
-    return Template::render(
+    return Template::render_admin(
       "/views/admin/plat/edit_plat.php",
       array("plat" => $plat),
-      true
     );
   }
 
@@ -145,16 +144,16 @@ class PlatController extends WebController
 
       if ($updated) {
         $message = "✅ Plat mis à jour avec succès !";
-        return Template::render(
-          "views/messages/success.php",
+        return Template::render_admin(
+          "views/messages/admin/success.php",
           array("message" => $message)
         );
         /* header("Location: /plat/show/$id?success=1");
             exit; */
       } else {
         $message = "Erreur lors de la mise à jour";
-        return Template::render(
-          "views/messages/error.php",
+        return Template::render_admin(
+          "views/messages/admin/error.php",
           array("message" => $message)
         );
       }
@@ -169,14 +168,14 @@ class PlatController extends WebController
       $result = $this->platModele->deleteOne($platId);
       if ($result) {
         $message = "La suppression a été éffectué avec succes";
-        return Template::render(
+        return Template::render_admin(
           "/views/messages/success.php",
           array("message" => $message)
         );
       }
       else{
         $message = "La suppression n'a pas reussi";
-        return Template::render(
+        return Template::render_admin(
           "/views/messages/error.php",
           array("message" => $message)
         );
