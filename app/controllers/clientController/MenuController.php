@@ -27,7 +27,7 @@ class MenuController extends WebController
     $lesMenus = [];
     //var_dump($menus);
     foreach ($menus as $key => $menu) {
-      $id = $menu->id;
+      $id = $menu['id'];
       $plats = $this->menuModele->getPlatsPrixByMenuId($id);
       $lesMenus[$key]["menus"] = $menu;
       $lesMenus[$key]["plats"] = $plats;
