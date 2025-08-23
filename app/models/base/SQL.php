@@ -12,7 +12,7 @@ class SQL implements IDatabase
     /**
      * @var $pdo PDO|null
      */
-    private static ?\PDO $pdo = null;
+    private static ?PDO $pdo = null;
 
     /**
      * @return PDO|null
