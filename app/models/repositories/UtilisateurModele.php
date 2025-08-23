@@ -65,7 +65,50 @@ class UtilisateurModele extends SQL
   public function recherche(string $keyword = "", int $limit = PHP_INT_MAX, int $page = 0): array
   {
     $query = "SELECT * FROM utilisateur WHERE nom LIKE :nom OR prenom like :prenom OR email like :email LIMIT :limit,:offset;";
+  public function liste(int $page = 0, int $limit = 10)
+  {
+    $query = "SELECT * FROM {$this->tableName} 
+              ORDER BY login ASC 
+              LIMIT :limit";
+    // OFFSET :offset";
 
+    $stmt = $this->getPdo()->prepare($query);
+
+    // Calcul offset correct
+    $offset = $page * $limit;
+
+    // Bind en entiers (important !)
+    $stmt->bindValue(':limit', $limit, \PDO::PARAM_INT);
+    //$stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
+
+    $stmt->execute();
+    //$menus = $stmt->fetchAll(\PDO::FETCH_OBJ);
+    //$plats = array_map('getPlatsPrixByMenuId', $menus);
+    /* foreach($menus as $key => $menu){
+
+        } */
+    //var_dump($menus);
+    return $stmt->fetchAll();
+  }
+  /**
+   * Retourne une liste de client correspondant au critère de recherche
+   * @param string $keyword
+   * @param int $limit
+   * @param int $page
+   * @return Utilisateur[]
+   */
+  public function recherche(string $keyword = "", int $limit = PHP_INT_MAX, int $page = 0): array
+  {
+    $query = "SELECT * FROM utilisateur WHERE nom LIKE :nom OR prenom like :prenom OR email like :email LIMIT :limit,:offset;";
+
+    $stmt = SQL::getPdo()->prepare($query);
+    $stmt->execute([
+      ":nom" => "%$keyword%",
+      ":prenom" => "%$keyword%",
+      ":email" => "%$keyword%",
+      ":limit" => $limit * $page,
+      ":offset" => $limit
+    ]);
     $stmt = SQL::getPdo()->prepare($query);
     $stmt->execute([
       ":nom" => "%$keyword%",
@@ -78,6 +121,16 @@ class UtilisateurModele extends SQL
     return $stmt->fetchAll(\PDO::FETCH_CLASS, Utilisateur::class);
   }
 
+  /**
+   * Ajoute un nouveau client en base de données
+   * @param Utilisateur $unClient
+   * @return bool|string
+   */
+  public function creerClient(Utilisateur $unClient): bool|string
+  {
+    $query = "INSERT INTO utilisateur (id, nom, prenom, email, telephone) VALUES (null, ?, ?, ?, ?)";
+    $stmt = SQL::getPdo()->prepare($query);
+    $stmt->execute([$unClient->getNom(), $unClient->getPrenom(), $unClient->getEmail(), $unClient->getTelephone()]);
   /**
    * Ajoute un nouveau client en base de données
    * @param Utilisateur $unClient
