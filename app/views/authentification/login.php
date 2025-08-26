@@ -25,7 +25,7 @@
 
     <p class="text-sm text-center mt-4">
       Pas encore de compte ?
-      <a href="signup.php" class="text-indigo-600 hover:underline">Inscription</a>
+      <a href="/php/tastyfood_mvc/public/signup" class="text-indigo-600 hover:underline">Inscription</a>
     </p>
   </div>
 </section>

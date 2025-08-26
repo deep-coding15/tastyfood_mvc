@@ -36,7 +36,8 @@ class Web
     BaseRoute::Add('/public/login', [$main, 'login']);
     BaseRoute::Add('/public/login/traitement', [$utilisateurController, 'loginTraitement']);
     BaseRoute::Add('/public/signup', [$main, 'signup']);
-    BaseRoute::Add('/public/signup/traitement', [$main, 'signupTraitement']);
+    BaseRoute::Add('/public/signup/traitement', [$utilisateurController, 'signupTraitement']);
+    BaseRoute::Add('/public/profil', [$utilisateurController, 'profil']);
 
     BaseRoute::Add('/public/utilisateur', [$utilisateurController, 'liste']);
 

@@ -2,6 +2,9 @@
 
 namespace App\Models\Repositories;
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 use App\Authentification\Auth;
 use App\Authentification\SessionManager;
 use App\Models\Base\SQL;
@@ -13,7 +16,7 @@ use Exception;
 class UtilisateurModele extends SQL
 {
   private Auth $auth;
-  
+
   public function __construct()
   {
     parent::__construct('utilisateur', 'id');
@@ -126,17 +129,17 @@ class UtilisateurModele extends SQL
 
     // Vérifie dans la base si le login existe déjà
     while (self::loginExiste($login)) {
-        $login = $baseLogin . $i;
-        $i++;
+      $login = $baseLogin . $i;
+      $i++;
     }
     return $login;
   }
 
   function loginExiste($login)
   {
-      $sql = "SELECT COUNT(*) FROM utilisateur WHERE login = ?";
-      $stmt = $this->getPdo()->prepare($sql, [$login]);
-      return $stmt->fetchColumn() > 0;
+    $sql = "SELECT COUNT(*) FROM utilisateur WHERE login = ?";
+    $stmt = $this->getPdo()->prepare($sql, [$login]);
+    return $stmt->fetchColumn() > 0;
   }
   /**
    * Permmet d'inserer un utilisateur dans la base de donnees lorsqu'on clique sur le formulaire de login
@@ -149,46 +152,45 @@ class UtilisateurModele extends SQL
       $postData = $_POST;
     } */
     if (
-        isset($postData["email"], $postData["password"]) 
-        && trim($postData["password"]) !== ""
-        && trim($postData["email"]) !== ""
+      isset($postData["email"], $postData["password"])
+      && trim($postData["password"]) !== ""
+      && trim($postData["email"]) !== ""
     ) {
-        $email = trim($postData['email'] ?? '');
-        $password = trim($postData['password'] ?? '');
-        /* echo 'email'; var_dump($email);
+      $email = trim($postData['email'] ?? '');
+      $password = trim($postData['password'] ?? '');
+      /* echo 'email'; var_dump($email);
         echo 'password'; var_dump($password); */
     }
-    try 
-    {
+    try {
       //$result = $this->auth->login($email, $password);
       $result = $this->validerLogin($email, $password);
       $message = "Vos informations de connection sont corrects. 
                     Votre compte est maintenant actif";
       return ['user' => $result, "message" => $message];
     } catch (Exception $exception) {
-        $message = "Erreur : " . $exception->getMessage();
-        //var_dump($message);
-        return false;
+      $message = "Erreur : " . $exception->getMessage();
+      //var_dump($message);
+      return false;
     }
-    
-        /* $stripe = new \Stripe\StripeClient($_ENV['STRIPE_SECRET_API_KEY']);
+
+    /* $stripe = new \Stripe\StripeClient($_ENV['STRIPE_SECRET_API_KEY']);
 
         $customer = $stripe->customers->create([
             'name' => 'Jenny Rosen',
             'email' => 'jennyrosen@example.com',
         ]); */
-        
-      //init session message
-      //$this->sessionManager->setMessage($message);
-      //SecureSession::showMessage($message); 
-  }  
+
+    //init session message
+    //$this->sessionManager->setMessage($message);
+    //SecureSession::showMessage($message); 
+  }
 
   function validerLogin(string $email, string $password)
   {
     //$_sessionManager = SessionManager::getInstance();
     // Vérifie que les paramètres ne sont pas vides
     if (empty($email) || empty($password)) {
-        throw new Exception("Email ou mot de passe manquant.");
+      throw new Exception("Email ou mot de passe manquant.");
     }
 
     $sql = "SELECT * FROM utilisateur WHERE email = :email";
@@ -200,37 +202,110 @@ class UtilisateurModele extends SQL
 
     //var_dump($user);
     if (!$user) {
-        throw new Exception("Aucun utilisateur trouvé avec cet email.");
+      throw new Exception("Aucun utilisateur trouvé avec cet email.");
     }
 
     if (!password_verify($password, $user['password'])) {
-        throw new Exception('le mot de passe n\'est pas valide');
+      throw new Exception('le mot de passe n\'est pas valide');
     }
-    SessionManager::set('user', 
+    SessionManager::set(
+      'user',
       [
-          'id'     => $user['id'],
-          'email'  => $user['email'],
-          'role'   => $user['role'],
-          'nom'    => $user['nom'],
-          'prenom' => $user['prenom'],
+        'id'     => $user['id'],
+        'email'  => $user['email'],
+        'role'   => $user['role'],
+        'nom'    => $user['nom'],
+        'prenom' => $user['prenom'],
       ]
     );
-    
+
     // Active le compte uniquement s’il n'est pas déjà actif
     if ((int)$user['is_active'] === 0) {
-        $sqlVerify = "UPDATE utilisateur SET is_active = 1 WHERE email = :email";
-        $this->getPdo()->prepare($sqlVerify, [":email" => $email]);
+      $sqlVerify = "UPDATE utilisateur SET is_active = 1 WHERE email = :email";
+      $this->getPdo()->prepare($sqlVerify, [":email" => $email]);
     }
     //echo 'user in valider signup';
     //var_dump($user);
     /* $_SESSION['ID'] = $user['id_utilisateur'];
     $_SESSION['UTILISATEUR'] = $user;
-      *///$_sessionManager->initSession($user['role'], $user);
+      */ //$_sessionManager->initSession($user['role'], $user);
     //var_dump($this->sessionManager->getSession()->get('UTILISATEUR'));
     /* echo 'user in session valider signup';
     var_dump($_SESSION['UTILISATEUR']);
       */
     //var_dump($user);
     return $user;
-  } 
+  }
+
+  /**
+   * Permet d'inserer un utilisateur dans la base de donnees lorsqu'on clique sur le formulaire de login
+   * @param array $postData : table renvoyé par le formulaire
+   * @return void
+   */
+  public function signUp(array $postData): bool
+  {
+    if(!isset($postData['nom'], $postData['prenom'], $postData['email'], $postData['password']))
+      throw new Exception("les champs sont manquants ou non correctement ecrits.");
+    
+    if (
+      isset($postData["nom"]) && trim($postData["nom"]) != ""
+      && isset($postData["prenom"]) && trim($postData['prenom']) != ""
+      && isset($postData["password"]) && trim($postData["password"]) != ""
+      && isset($postData["email"]) && trim($postData["email"]) != ""
+      && isset($postData["telephone"]) && trim($postData["telephone"]) != ""
+    ) {
+      $prenom = trim($postData['prenom'] ?? '');
+      $nom = trim($postData['nom'] ?? '');
+      $email = trim($postData['email'] ?? '');
+      $password = $postData['password'] ?? '';
+      $telephone = trim($postData['telephone'] ?? '');
+    }
+    $image = 'default_profile_photo.jpg';
+    $login = self::genererLoginUnique($prenom, $nom, $this->getPdo());
+
+    $sql = "INSERT INTO utilisateur(nom, prenom, login, 
+                password, img_profil, email, telephone, role, 
+                is_active) VALUES (:nom, :prenom, :login, :password, :image, :email, :phone, :role, :active)";
+
+    $role = 'client';
+    $user = [
+      'nom' => $nom,
+      'prenom' => $prenom,
+      'login' => $login,
+      'password' => password_hash($password, PASSWORD_DEFAULT),
+      'image' => $image,
+      'email' => $email,
+      'phone' => $telephone,
+      'role' => $role,
+      'active' => false
+    ];
+
+    $resultStatus = $this->getPdo()->prepare($sql);
+    $resultStatus->execute($user);
+    //echo "Nombre de lignes affectées : " . $resultStatus->rowCount();
+
+    $lastid = $this->getPdo()->lastInsertId();
+    $userI = $this->getOne($lastid);
+    //var_dump($userI);
+
+    if ($resultStatus  && $resultStatus->rowCount() > 0) {
+      //echo 'ID insere : ' . $lastid;
+      SessionManager::set('user',
+        [
+                  'id'     => $userI->id,
+                  'email'  => $userI->email,
+                  'role'   => $userI->role,
+                  'nom'    => $userI->nom,
+                  'prenom' => $userI->prenom,
+                  'active' => $userI->is_active,
+                ]
+      );
+      //$this->sessionManager->regenerateSession($user, $role);
+      $message = "Vos informations de connection ont été enregistré avec succès";
+      return true;
+    } else {
+      var_dump($resultStatus);
+      throw new Exception("L'enregistrement del'utilisateur dans la base de données a echoué");
+    }
+  }
 }

@@ -6,6 +6,7 @@ use App\Controllers\Base\WebController;
 use App\Models\Base\SQL;
 use App\Models\Repositories\UtilisateurModele;
 use App\Utils\Template;
+use App\Utils\Utils;
 use Exception;
 
 class UtilisateurController extends WebController
@@ -25,35 +26,48 @@ class UtilisateurController extends WebController
       array("page" => $page, "utilisateurs" => $lesClients)
     );
   }
-  public function loginTraitement(){
-    if($_SERVER['REQUEST_METHOD'] === "POST"){
+  public function loginTraitement()
+  {
+    if ($_SERVER['REQUEST_METHOD'] === "POST") {
       $data = $_POST;
       $result = $this->utilisateurModele->login($data);
       //var_dump($result);
-      if(is_array($result)){
+      if (is_array($result)) {
         $user = $this->utilisateurModele->getOne($result['user']['id']);
-        return Template::render(
-          "views/authentification/profile.php",
-          ['user' => $user]
-        );
+        Utils::redirect('/public/plat');
+        /* return Template::render(
+          "views/client/plat/liste_plat.php",
+        ); */
       }
       return Template::render(
-          "views/authentification/signup.php",
-        );
+        "views/authentification/signup.php",
+      );
     }
-    
   }
-  public function signupTraitement(){
-    if($_SERVER['REQUEST_METHOD'] === "POST"){
+  public function signupTraitement()
+  {
+    $data = [];
+    if ($_SERVER['REQUEST_METHOD'] === "POST" || $_SERVER['REQUEST_METHOD'] === "post") {
       $data = $_POST;
+    } else if ($_SERVER['REQUEST_METHOD'] === "GET" || $_SERVER['REQUEST_METHOD'] === "get") {
+      $data = $_GET;
     }
-    if(!isset($data['nom'], $data['prenom'], $data['email'], $data['password']))
-      throw new Exception("les champs sont manquants ou non correctement ecrits.");
-    $nom = trim($data['nom']) ?? '';
-    $prenom = trim($data['prenom']) ?? '';
-    $email = trim($data['email']) ?? '';
-    $password = trim($data['password']) ?? '';
 
-
+    $result = $this->utilisateurModele->signUp($data);
+    if ($result) {
+      Utils::redirect('/public/login');
+    } else {
+      return Template::render(
+        "views/authentification/signup.php",
+      );
+    }
+  }
+  public function profil()
+  {
+    $user = $_SESSION['user'];
+    return Template::render(
+      'views/authentification/profile.php',
+      ['user' => $user]
+    );
   }
 }

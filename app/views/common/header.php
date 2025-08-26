@@ -48,13 +48,13 @@ $_sessionHelpers = new SessionHelpers(); // $_instance->getSession();
         <a href="/php/tastyfood_mvc/public" class="text-gray-600 hover:text-blue-600 flex-1">Accueil</a>
         <a href="/php/tastyfood_mvc/public/plat" class="text-gray-600 hover:text-blue-600 flex-1">Plats</a>  
         <a href="/php/tastyfood_mvc/public/menu" class="text-gray-600 hover:text-blue-600 flex-1">Menu</a>
-        <a href="<?= Constante::base_url_vues_client() ?>/reservation.php" class="text-gray-600 hover:text-blue-600 flex-1">Reservation</a>
-        <a href="<?= Constante::base_url_vues_client() ?>/livraison.php" class="text-gray-600 hover:text-blue-600 flex-1">Livraison</a>
-        <a href="<?= Constante::base_url_vues_client() ?>/a_propos.php" class="text-gray-600 hover:text-blue-600 flex-1">A propos</a>
-        <a href="<?= Constante::base_url_vues_client() ?>/contact.php" class="text-gray-600 hover:text-blue-600 flex-1">Contact</a>
+        <a href="/php/tastyfood_mvc/public/reservation" class="text-gray-600 hover:text-blue-600 flex-1">Reservation</a>
+        <a href="/php/tastyfood_mvc/public/livraison" class="text-gray-600 hover:text-blue-600 flex-1">Livraison</a>
+        <a href="/php/tastyfood_mvc/public/a_propos" class="text-gray-600 hover:text-blue-600 flex-1">A propos</a>
+        <a href="/php/tastyfood_mvc/public/contact" class="text-gray-600 hover:text-blue-600 flex-1">Contact</a>
         <a href="/php/tastyfood_mvc/public/login" class="text-gray-600 hover:text-blue-600 flex-1 
           border border-black rounded text-green-500" id="connexion">Connexion</a>
-        <a href="/php/tastyfood_mvc/public/profile" class="text-gray-600 hover:text-blue-600 flex-1">Profil</a>
+        <a href="/php/tastyfood_mvc/public/profil" class="text-gray-600 hover:text-blue-600 flex-1">Profil</a>
       </nav>
       <!-- bouton hamburger visible sur mobile (petits écrans)-->
       <button id="menu-toggle" class="md:hidden text-gray-600 focus:outline-none">
@@ -68,12 +68,12 @@ $_sessionHelpers = new SessionHelpers(); // $_instance->getSession();
     <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2">
       <a href="/php/tastyfood_mvc/public/plat" class="text-gray-600 hover:text-blue-600 flex-1">Accueil</a>
       <a href="/php/tastyfood_mvc/public/menu" class="text-gray-600 hover:text-blue-600 flex-1">Menu</a>
-      <a href="<?= Constante::base_url_vues_client() ?>/reservation.php" class="text-gray-600 hover:text-blue-600 flex-1">Reservation</a>
-      <a href="<?= Constante::base_url_vues_client() ?>/livraison.php" class="text-gray-600 hover:text-blue-600 flex-1">Livraison</a>
-      <a href="<?= Constante::base_url_vues_client() ?>/a_propos.php" class="text-gray-600 hover:text-blue-600 flex-1">A propos</a>
-      <a href="<?= Constante::base_url_vues_client() ?>/contact.php" class="text-gray-600 hover:text-blue-600 flex-1">Contact</a>
+      <a href="/php/tastyfood_mvc/public/reservation" class="text-gray-600 hover:text-blue-600 flex-1">Reservation</a>
+      <a href="/php/tastyfood_mvc/public/livraison" class="text-gray-600 hover:text-blue-600 flex-1">Livraison</a>
+      <a href="/php/tastyfood_mvc/public/a_propos" class="text-gray-600 hover:text-blue-600 flex-1">A propos</a>
+      <a href="/php/tastyfood_mvc/public/contact" class="text-gray-600 hover:text-blue-600 flex-1">Contact</a>
       <a href="/php/tastyfood_mvc/public/login" class="text-gray-600 hover:text-blue-600 flex-1 border border-black rounded text-green-500" id="connexion">Connexion</a>
-      <a href="/php/tastyfood_mvc/public/profile" class="text-gray-600 hover:text-blue-600 flex-1">Profil</a>
+      <a href="/php/tastyfood_mvc/public/profil" class="text-gray-600 hover:text-blue-600 flex-1">Profil</a>
     </div>
 
   </header>
