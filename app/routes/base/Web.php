@@ -4,9 +4,6 @@ namespace App\Routes\Base;
 
 use App\Authentification\SessionManager;
 
-
-use App\Authentification\SessionManager;
-
 require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 
 use App\Controllers\ClientController\MenuController as MenuClientController;
